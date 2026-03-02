@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.Collections;
 import java.util.function.Supplier;
 
 
@@ -44,7 +45,7 @@ public final class LazyMap<K, V> extends AbstractMap<K, V>
     }
 
 
-    /* Lazy Put API
+    /* LazyMap API
     --===---------------------------------------------------------------------
     */
 
@@ -64,6 +65,11 @@ public final class LazyMap<K, V> extends AbstractMap<K, V>
     public LazyMap<K, V> with(K key, V value)
     { this.put(key, value); return this; }
 
+
+    public Set<Map.Entry<K, Supplier<V>>> supplierEntrySet()
+    {
+        return Collections.unmodifiableSet(map.entrySet());
+    }
 
     /* Map Overrides
     --===---------------------------------------------------------------------
