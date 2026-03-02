@@ -1,0 +1,8 @@
+{
+    "name": "ramar/lib/structs",
+    "dependencies": {
+        "disk": {
+            "ramar/lib/test": "ramar_test.jar"
+        }
+    }
+}
