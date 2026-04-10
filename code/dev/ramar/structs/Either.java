@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import java.util.concurrent.Callable;
+
 /// GPT-Made
 /**
  * A simple disjoint-union type representing one of two possible values.
@@ -42,14 +44,28 @@ public final class Either<L, R>
     {
         T get() throws E;
     }
-    
+
     /**
      * Executes the supplier and captures any thrown exception
      * as Either.Left(exception).
      *
      * The exception type is preserved.
      */
-    public static <T, E extends Exception> Either<E, T> Try(ThrowingSupplier<T, E> supplier)
+    public static <T> Either<Exception, T> Try(Callable<T> supplier)
+    {
+        Objects.requireNonNull(supplier, "supplier");
+
+        try
+        {
+            return Either.Right(supplier.call());
+        }
+        catch (Exception ex)
+        {
+            return Either.Left(ex);
+        }
+    }
+
+    public static <T, E extends Exception> Either<E, T> TryChecked(ThrowingSupplier<T, E> supplier)
     {
         Objects.requireNonNull(supplier, "supplier");
 
