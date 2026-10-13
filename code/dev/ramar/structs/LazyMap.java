@@ -1,13 +1,13 @@
 package dev.ramar.structs;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.Objects;
+import java.util.Iterator;
 import java.util.AbstractMap;
 import java.util.AbstractSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Iterator;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.function.Supplier;
 
 

@@ -1,9 +1,8 @@
 package dev.ramar.structs;
 
-import java.util.concurrent.CompletableFuture;
-
-import java.util.Optional;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 public final class Field<O, T extends Object>
 {
@@ -15,6 +14,13 @@ public final class Field<O, T extends Object>
     public Field(O owner)
     {
         this.owner = Objects.requireNonNull(owner);
+    }
+
+
+    public Field(O owner, T value)
+    {
+        this(owner);
+        this.value = value;
     }
 
     public void set(T value)

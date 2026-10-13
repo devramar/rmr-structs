@@ -1,15 +1,17 @@
 package dev.ramar.structs;
 
-import java.util.concurrent.CompletableFuture;
-
-import java.util.Optional;
-
 import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 public final class AsyncField<O, T>
 {
+    private static final Object NOTHING = new Object();
+
     private final O owner;
-    private Async<T> value;
+    private Async<T> value = Async.Completed((T)NOTHING);
+
+
 
     public AsyncField(O owner)
     {
@@ -39,11 +41,23 @@ public final class AsyncField<O, T>
         return owner;
     }
 
+    public boolean isNothing()
+    {
+        return ((Object)this.value.get()) == NOTHING;
+    }
+
+    public boolean isEmpty()
+    { 
+        if( !this.value.isReady() )
+            return false;
+
+        return this.isNothing();
+    }
 
 
     public T get()
     {
-        if(value == null)
+        if( this.isNothing() )
             throw new IllegalStateException("Async field has not been assigned");
 
         return value.get();
