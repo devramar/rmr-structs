@@ -2,7 +2,6 @@ package dev.ramar.structs;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 public final class Field<O, T extends Object>
 {

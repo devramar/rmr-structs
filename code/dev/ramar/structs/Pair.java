@@ -3,7 +3,16 @@ package dev.ramar.structs;
 public final class Pair<A, B>
 {
     public final A a;
+    public A a()
+    { return this.a; }
+    public A left()
+    { return this.a; }
+
     public final B b;
+    public B b()
+    { return this.b; }
+    public B right()
+    { return this.b; }
 
     public Pair(A a, B b)
     {
